@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS vibetribe_db;
+CREATE DATABASE vibetribe_db;
