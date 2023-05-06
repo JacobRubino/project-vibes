@@ -1,28 +1,67 @@
+const express = require('express');
 const router = require('express').Router();
 const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
+const expressWinston = require('express-winston');
+const winston = require('winston');
+const app = module.exports = express();
+
+
+router.get('/error', function(req, res, next) {
+  // here we cause an error in the pipeline so we see express-winston in action.
+  return next(new Error("This is an error and it should be logged to the console"));
+});
+
+router.get('/', function(req, res, next) {
+  res.write('This is a normal request, it should be logged to the console too');
+  res.end();
+});
+
+// express-winston logger makes sense BEFORE the router
+app.use(expressWinston.logger({
+  transports: [
+    new winston.transports.Console()
+  ],
+  format: winston.format.combine(
+    winston.format.colorize(),
+    winston.format.json()
+  )
+}));
+
+app.use(router);
+
+    // express-winston errorLogger makes sense AFTER the router.
+    app.use(expressWinston.errorLogger({
+      transports: [
+        new winston.transports.Console()
+      ],
+      format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.json()
+      )
+    }));
 
 router.get('/', async (req, res) => {
   try {
     // Get all Posts and JOIN with user data
-    // const PostData = await Post.findAll({
-    //   include: [
-    //     {
-    //       model: User,
-    //       attributes: ['name'],
-    //     },
-    //   ],
-    // });
+    const PostData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
 
-    // // Serialize data so the template can read it
-    // const Post = PostData.map((Post) => Post.get({ plain: true }));
+    // Serialize data so the template can read it
+    const Post = PostData.map((Post) => Post.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage')
-        // res.render('homepage', { 
-    //   Posts, 
-    //   logged_in: req.session.logged_in 
-    // });
+        res.render('homepage', { 
+      Posts, 
+      logged_in: req.session.logged_in 
+    });
   } catch (err) {
     res.status(500).json(err);
   }
