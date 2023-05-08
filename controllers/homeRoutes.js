@@ -4,11 +4,6 @@ const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 const expressWinston = require('express-winston');
 const winston = require('winston');
-const app = module.exports = express();
-
-
-app.use(router);
-
 
 router.get('/', async (req, res) => {
   try {
