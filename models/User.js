@@ -1,16 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
-const { userLogger } = require('./logger');
-
-// [ WINSTON ]  User Tracker
-userLogger.info('User created!', {
-  user_id: `${res._id}`,
-  user_name: `${res.name}`,
-  user_email: `${res.email}`,
-});
-userLogger.error(`Unable to find user: ${err}`);
-
+const { userLogger } = require('../utils/logger');
+const { error } = require('winston');
 
 class User extends Model {
   checkPassword(loginPw) {
@@ -64,6 +56,15 @@ User.init(
     modelName: 'user',
   }
 );
+
+// [ WINSTON ]  User Tracker
+userLogger.info('User created!', {
+  user_id: `${User._id}`,
+  user_name: `${User.name}`,
+  user_email: `${User.email}`,
+});
+userLogger.error(`Unable to find user: ${error}`);
+
 
 module.exports = User;
 
