@@ -6,7 +6,7 @@ const winston = require('winston');
 const expressWinston = require('express-winston');
 const path = require('path')
 const helpers = require('./utils/auth')
-const cors = require('cors')
+// const cors = require('cors')
 const {userLogger: logger} = require('./utils/logger');
 
 const sequelize = require('./config/connection');
@@ -18,7 +18,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors())
+// app.use(cors())
 
 const hbs = exphbs.create({ helpers });
 
@@ -45,7 +45,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
