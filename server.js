@@ -47,17 +47,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// [ WINSTON ]  Capture 500 errors
-app.use((err, req, res, next) => {
-  res.status(500).send('INTERNAL SERVER ERROR (500))');
-  logger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-})
+// // [ WINSTON ]  Capture 500 errors
+// app.use((err, req, res, next) => {
+//   res.status(500).send('INTERNAL SERVER ERROR (500))');
+//   logger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+// })
 
-// [ WINSTON ]  Capture 404 erors
-app.use((req, res, next) => {
-  res.status(404).send("PAGE NOT FOUND (404))");
-  logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-})
+// // // [ WINSTON ]  Capture 404 erors
+// app.use((req, res, next) => {
+//   res.status(404).send("PAGE NOT FOUND (404))");
+//   logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+// })
 
 
 app.use(routes);
