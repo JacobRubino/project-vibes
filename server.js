@@ -47,6 +47,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(routes);
+
 // // [ WINSTON ]  Capture 500 errors
 // app.use((err, req, res, next) => {
 //   res.status(500).send('INTERNAL SERVER ERROR (500))');
@@ -60,7 +62,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // })
 
 
-app.use(routes);
+
 
 // Run the server
 sequelize.sync({ force: false }).then(() => {
