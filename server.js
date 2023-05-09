@@ -46,7 +46,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+console.log("the path is ", path.join(__dirname, 'public'))
 app.use(routes);
 
 // [ WINSTON ]  Capture 500 errors

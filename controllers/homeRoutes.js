@@ -4,10 +4,8 @@ const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 const expressWinston = require('express-winston');
 const winston = require('winston');
-const app = module.exports = express();
 
 
-app.use(router);
 
 router.get('/', async (req, res) => {
   try {
@@ -22,35 +20,17 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const post = postData.map((Post) => post.get({ plain: true }));
+    const posts = postData.map((post) => post.get({ plain: true }));
 
     // Pass serialized data and session flag into template
       res.render('homepage', { 
-      Posts, 
+      posts, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-// router.get('/login', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//     });
-
-//     // const user = userData.get({ plain: true });
-
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -104,15 +84,15 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
-// router.get('/login', (req, res) => {
-//   // If the user is already logged in, redirect the request to another route
-//   if (req.session.logged_in) {
-//     res.redirect('/homepage');
-//     return;
-//   }
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/post');
+    return;
+  }
 
-//   res.render('login');
-// });
+  res.render('login');
+});
 
 
 module.exports = router;
