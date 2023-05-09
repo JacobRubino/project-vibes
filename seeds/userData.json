@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Jack Black",
+    "email": "jackblack@jackblack.com",
+    "password": "peaches69"
+  },
+  {
+    "name": "Will Smith",
+    "email": "willsmith@willsmith.com",
+    "password": "chrisrocklmao"
+  },
+  {
+    "name": "Chris Rock",
+    "email": "chrisrock@chrisrock.com",
+    "password": "willsmithlmao"
+  }
+]
