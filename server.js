@@ -7,8 +7,10 @@ const expressWinston = require('express-winston');
 const path = require('path')
 const helpers = require('./utils/auth')
 const cors = require('cors')
+const {userLogger: logger} = require('./utils/logger');
 
 const sequelize = require('./config/connection');
+const { log } = require('console');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
@@ -44,25 +46,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
-console.log("the error is", (path.join(__dirname, 'public')))
-
-app.use(expressWinston.logger({
-  transports: [
-    new winston.transports.Console()
-  ],
-  format: winston.format.combine(
-    winston.format.colorize(),
-    winston.format.json()
-  ),
-  meta: true,
-  msg: "HTTP {{req.method}} {{req.url}}",
-  expressFormat: true,
-  colorize: false,
-  ignoreRoute: function (req, res) { return false; }
-}));
-
+console.log("the path is ", path.join(__dirname, 'public'))
 app.use(routes);
 
+// [ WINSTON ]  Capture 500 errors
+app.use('*', (err, req, res, next) => {
+  res.status(500).send('INTERNAL SERVER ERROR (500))');
+  logger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+})
+
+// [ WINSTON ]  Capture 404 erors
+app.use('*', (req, res, next) => {
+  res.status(404).send("PAGE NOT FOUND (404))");
+  logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+})
+
+
+// Run the server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log(`Server started and running on http://localhost:${PORT}`));
 });
