@@ -1,62 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>test</title>
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>VibeTribe</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
+    rel="stylesheet">
+
+  <!--CSS Files -->
+  <link href="/css/animate.min.css" rel="stylesheet">
+  <link href="/css/aos.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap-icons.css" rel="stylesheet">
+  <link href="/css/boxicons.min.css" rel="stylesheet">
+  <link href="/css/glightbox.min.css" rel="stylesheet">
+  <link href="/css/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main JS File -->
+  <link href="/css/style.css" rel="stylesheet">
 </head>
 
-<body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-      </h1>
-      <nav>
-        <a href="/">Home</a>
+
+<header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div class="logo">
+        <h1><a class="text-dark" href="index.html"><span>VibeTribe</span></a></h1>
+      </div>
+<!-- .navbar -->
+<nav class="navbar">
+        <a class="active" href="/">Home</a>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile">profile</a> |
+        <a href="/profile">profile</a>|
         <button class="no-button" id="logout">logout</button>
         {{else}}
         <a href="/login">Login</a>
         {{/if}}
       </nav>
-    </header>
-    <main class="container container-fluid mt-5">
+    </div>
+  </header>
+
+
+
+<body>
+
       <!-- Render the sub layout -->
       {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
 
-<<<<<<< HEAD
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-    <div class="container d-flex justify-content-between align-items-center">
-
-      <div class="logo">
-        <h1 class="text-light"><a href="index.html"><span>VibeTribe</span></a></h1>
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="active" href="/homepage.handlebars">Home</a></li>
-          <li><a id ='signinbutt' class="active" hred="#">Log in</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+</body>
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex justify-cntent-center align-items-center">
+  {{!-- <div id="hero" class="d-flex justify-cntent-center align-items-center">
     <div id="heroCarousel" class="container carousel carousel-fade">
 
       <!-- Slide 1 -->
@@ -67,12 +70,12 @@
           <a href="#readmore" class="btn-get-started">Read More</a>
         </div>
       </div>
-  </section><!-- End Hero -->
+  </div><!-- End Hero -->
 
   <main id="main">
 
     <!-- ======= Services Section ======= -->
-    <section class="services">
+    <div class="services">
       <div class="container">
 
         <div class="row">
@@ -111,10 +114,10 @@
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+    </div><!-- End Services Section -->
 
     <!-- ======= Why Us Section ======= -->
-    <section class="why-us section-bg">
+    <div class="why-us section-bg">
       <div class="container">
 
         <div class="row">
@@ -256,17 +259,18 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <script src="/js/homeInteract.js"></script>
+  {{!-- <script src="/js/homeInteract.js"></script> --}}
 
   <!-- Template Main JS File -->
   {{!-- <script src="assets/js/main.js"></script> --}}
 
-=======
+
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
->>>>>>> a19b5b97579d4f54d5b0734819d7b5433adb9f19
+ 
 </body>
 
 </html>
+--}}
