@@ -46,22 +46,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+console.log("the path is ", path.join(__dirname, 'public'))
 app.use(routes);
 
 // [ WINSTON ]  Capture 500 errors
 app.use('*', (err, req, res, next) => {
-  res.status(500).send('INTERNAL SERVER ERROR (500)');
+  res.status(500).send('INTERNAL SERVER ERROR (500))');
   logger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
 })
 
-// [ WINSTON ]  Capture 404 errors
+// [ WINSTON ]  Capture 404 erors
 app.use('*', (req, res, next) => {
-  res.status(404).send("PAGE NOT FOUND (404)");
+  res.status(404).send("PAGE NOT FOUND (404))");
   logger.error(`400 || ${res.statusMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
 })
 
-app.use(routes);
 
 // Run the server
 sequelize.sync({ force: false }).then(() => {
