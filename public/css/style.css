@@ -9,6 +9,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #444;
@@ -79,7 +80,7 @@ h6,
 }
 
 #header.header-transparent {
-  background: none;
+  background: rgba(10, 10, 129, 0.295);
 }
 
 #header.header-scrolled {

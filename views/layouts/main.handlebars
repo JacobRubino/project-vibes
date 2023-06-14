@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -11,11 +10,9 @@
   <meta content="" name="keywords">
 
   <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 
-  <!--CSS Files -->
+  <!-- CSS Files -->
   <link href="/css/animate.min.css" rel="stylesheet">
   <link href="/css/aos.css" rel="stylesheet">
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -23,40 +20,41 @@
   <link href="/css/boxicons.min.css" rel="stylesheet">
   <link href="/css/glightbox.min.css" rel="stylesheet">
   <link href="/css/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main JS File -->
   <link href="/css/style.css" rel="stylesheet">
+  <style>
+    /* Add the same styling as the home button to other elements */
+    .active {
+      /* Your styles here */
+    }
+  </style>
 </head>
 
-
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-    <div class="container d-flex justify-content-between align-items-center">
+  <div class="container d-flex justify-content-between align-items-center">
 
-      <div class="logo">
-        <h1><a class="text-dark" href="index.html"><span>VibeTribe</span></a></h1>
-      </div>
-<!-- .navbar -->
-<nav class="navbar">
-        <a class="active" href="/">Home</a>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">profile</a>|
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">Login</a>
-        {{/if}}
-      </nav>
+    <div class="logo">
+      <h1><a class="text-dark" href="index.html"><span>VibeTribe</span></a></h1>
     </div>
-  </header>
-
-
+    <!-- .navbar -->
+    <nav class="navbar">
+      <a class="active" href="/">Home</a>
+      <!-- Conditionally render login or logout links -->
+      {{#if logged_in}}
+      <a href="/profile">profile</a>|
+      <button class="active" id="logout">logout</button>
+      {{else}}
+      <a href="/login">Login</a>
+      {{/if}}
+    </nav>
+  </div>
+</header>
 
 <body>
-
-      <!-- Render the sub layout -->
-      {{{ body }}}
-
+  <!-- Render the sub layout -->
+  {{{ body }}}
 </body>
+
+</html>
 
   <!-- ======= Hero Section ======= -->
   {{!-- <div id="hero" class="d-flex justify-cntent-center align-items-center">
